@@ -1,9 +1,9 @@
-<a href="https://www.buildwithfern.com/docs/intro">
+<a href="https://docs.buildwithfern.com/intro">
   <img src="https://github.com/fern-api/fern/blob/main/header.png" alt="header" />
 </a>
 
 <div align="center">
-  <a href="https://www.buildwithfern.com/docs" alt="documentation">Documentation</a>
+  <a href="https://docs.buildwithfern.com/" alt="documentation">Documentation</a>
   <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
   <a href="https://discord.com/invite/JkkXumPzcG" alt="discord">Join the Discord</a>
 </div>
@@ -56,7 +56,7 @@ The API definition is stored in [fern/api/definition](fern/api/definition). The
 API Definition contains information about what endpoints, types, and errors are
 used in the API. The definition is broken into smaller files such as plant.yml
 and owner.yml. You can read more about the syntax of a Fern Definition in our
-docs [here](https://www.buildwithfern.com/docs/definition).
+docs [here](https://docs.buildwithfern.com/definition).
 
 In order to make sure that the definition is valid, you can use the Fern CLI.
 
@@ -73,7 +73,7 @@ Fern definition - the generated code lives in the
 
 To re-generate the code, run `fern generate`. The generation is configured in
 [generators.yml](fern/api/generators.yml). You can read more about the syntax of
-`generators.yml` in our docs [here](https://www.buildwithfern.com/docs/compiler/generate#generators-yml).
+`generators.yml` in our docs [here](https://docs.buildwithfern.com/compiler/generators).
 
 ```yaml
 # generators.yml
