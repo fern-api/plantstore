@@ -1,4 +1,4 @@
-<a href="https://www.buildwithfern.com/docs/intro">
+<a href="https://docs.buildwithfern.com/intro">
   <img src="https://github.com/fern-api/fern/blob/main/header.png" alt="header" />
 </a>
 
