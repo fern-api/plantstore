@@ -61,6 +61,9 @@ services:
                 plantId: 971e5e64-7c5b-0033-a645-bcfe0683000b
               response:
                 error: InvalidIdSuppliedError
+                body: 
+                    id:  309e5b94-7a5b-4433-a645-effa0699928a
+                    message: This PlantID doesn't match any ID in our system.
             - path-parameters:
                 plantId: 309e5e64-7c5b-4433-a645-effa0683228e
               response:
@@ -101,6 +104,11 @@ types:
       photoUrls: map<string,string>
       status: optional<PlantStatus>
 
+  InvalidId:
+    properties:
+      id: PlantId
+      message: string
+
 errors:
   InvalidResponseError:
     status-code: 405
@@ -111,3 +119,4 @@ errors:
 
   InvalidIdSuppliedError:
     status-code: 400
+    type: InvalidId
