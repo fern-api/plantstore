@@ -2,12 +2,13 @@
 
 from .errors import InvalidIdSuppliedError, InvalidResponseError, PlantNotFoundError
 from .service import AbstractPlantService, AddPlantRequest
-from .types import CategoryId, Plant, PlantCategory, PlantId, PlantStatus
+from .types import CategoryId, InvalidId, Plant, PlantCategory, PlantId, PlantStatus
 
 __all__ = [
     "AbstractPlantService",
     "AddPlantRequest",
     "CategoryId",
+    "InvalidId",
     "InvalidIdSuppliedError",
     "InvalidResponseError",
     "Plant",

@@ -68,6 +68,7 @@ types:
       plants: list<plant.Plant>
       lifetime_spend: double
       id: OwnerId
+      created_time: optional<datetime>
 
   StoreEmployee:
     extends: StoreCustomer
