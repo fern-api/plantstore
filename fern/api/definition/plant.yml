@@ -1,85 +1,83 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/fern-api/fern/main/fern.schema.json
 
-services:
-  http:
-    PlantService:
-      auth: true
-      base-path: /plant
-      endpoints:
-        add:
-          display-name: Add a plant
-          docs: Add a new plant to the store.
-          path: /
-          method: POST
-          request:
-            name: AddPlantRequest
+service:
+  auth: true
+  base-path: /plant
+  endpoints:
+    add:
+      display-name: Add a plant
+      docs: Add a new plant to the store.
+      path: /
+      method: POST
+      request:
+        name: AddPlantRequest
+        body:
+          properties:
+            id: optional<PlantId>
+            category: optional<PlantCategory>
+            name: string
+            photoUrls: map<string,string>
+            status: optional<PlantStatus>
+      errors:
+        - InvalidResponseError
+      examples:
+        - request:
+            id: 309e5e64-7c5b-4433-a645-effa0683228e
+            category:
+              id: 2c1e5e33-6633-400f-8d87-bf4e81506dff
+              name: Fiddle Leaf Fig
+            name: Quadi
+            photoUrls:
+              growing: https://i.ibb.co/vk5N4C4/EDAA47-FF-6921-41-EE-ABA1-13-DE3-FCDB4-C0-1-105-c.jpg
+            status: available
+          response:
+            error: InvalidResponseError
+    find:
+      display-name: Find plant by ID
+      method: GET
+      path: /{plantId}
+      path-parameters:
+        plantId: PlantId
+      response: Plant
+      errors:
+        - PlantNotFoundError
+        - InvalidIdSuppliedError
+      examples:
+        - path-parameters:
+            plantId: 309e5e64-7c5b-4433-a645-effa0683228e
+          response:
             body:
-              properties:
-                id: optional<PlantId>
-                category: optional<PlantCategory>
-                name: string
-                photoUrls: map<string,string>
-                status: optional<PlantStatus>
-          errors:
-            - InvalidResponseError
-          examples:
-            - request:
-                id: 309e5e64-7c5b-4433-a645-effa0683228e
-                category:
-                  id: 2c1e5e33-6633-400f-8d87-bf4e81506dff
-                  name: Fiddle Leaf Fig
-                name: Quadi
-                photoUrls:
-                  growing: https://i.ibb.co/vk5N4C4/EDAA47-FF-6921-41-EE-ABA1-13-DE3-FCDB4-C0-1-105-c.jpg
-                status: available
-              response:
-                error: InvalidResponseError
-        find:
-          display-name: Find plant by ID
-          method: GET
-          path: /{plantId}
-          path-parameters:
-            plantId: PlantId
-          response: Plant
-          errors:
-            - PlantNotFoundError
-            - InvalidIdSuppliedError
-          examples:
-            - path-parameters:
-                plantId: 309e5e64-7c5b-4433-a645-effa0683228e
-              response:
-                body:
-                  id: 309e5e64-7c5b-4433-a645-effa0683228e
-                  category:
-                    id: 2c1e5e33-6633-400f-8d87-bf4e81506dff
-                    name: Fiddle Leaf Fig
-                  name: Quadi
-                  photoUrls:
-                    growing: https://i.ibb.co/vk5N4C4/EDAA47-FF-6921-41-EE-ABA1-13-DE3-FCDB4-C0-1-105-c.jpg
-                  status: available
-            - path-parameters:
-                plantId: 971e5e64-7c5b-0033-a645-bcfe0683000b
-              response:
-                error: InvalidIdSuppliedError
-                body: 
-                    id:  309e5b94-7a5b-4433-a645-effa0699928a
-                    message: This PlantID doesn't match any ID in our system.
-            - path-parameters:
-                plantId: 309e5e64-7c5b-4433-a645-effa0683228e
-              response:
-                error: PlantNotFoundError
-        delete:
-          display-name: Delete plant by ID
-          method: DELETE
-          path: /{plantId}
-          path-parameters:
-            plantId: PlantId
-          errors:
-            - PlantNotFoundError
-            - InvalidIdSuppliedError
-          examples:
-            - path-parameters:
-                plantId: 309e5e64-7c5b-4433-a645-effa0683228e
+              id: 309e5e64-7c5b-4433-a645-effa0683228e
+              category:
+                id: 2c1e5e33-6633-400f-8d87-bf4e81506dff
+                name: Fiddle Leaf Fig
+              name: Quadi
+              photoUrls:
+                growing: https://i.ibb.co/vk5N4C4/EDAA47-FF-6921-41-EE-ABA1-13-DE3-FCDB4-C0-1-105-c.jpg
+              status: available
+        - path-parameters:
+            plantId: 971e5e64-7c5b-0033-a645-bcfe0683000b
+          response:
+            error: InvalidIdSuppliedError
+            body:
+              id: 309e5b94-7a5b-4433-a645-effa0699928a
+              message: This PlantID doesn't match any ID in our system.
+        - path-parameters:
+            plantId: 309e5e64-7c5b-4433-a645-effa0683228e
+          response:
+            error: PlantNotFoundError
+    delete:
+      display-name: Delete plant by ID
+      method: DELETE
+      path: /{plantId}
+      path-parameters:
+        plantId: PlantId
+      errors:
+        - PlantNotFoundError
+        - InvalidIdSuppliedError
+      examples:
+        - path-parameters:
+            plantId: 309e5e64-7c5b-4433-a645-effa0683228e
 
 types:
   PlantId: uuid

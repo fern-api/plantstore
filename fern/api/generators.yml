@@ -10,7 +10,7 @@ groups:
   external:
     generators:
       - name: fernapi/fern-typescript-sdk
-        version: 0.0.257
+        version: 0.0.272
         output:
           location: npm
           package-name: "@fern-api/plantstore"

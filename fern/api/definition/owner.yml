@@ -3,49 +3,47 @@
 imports:
   plant: plant.yml
 
-services:
-  http:
-    OwnerService:
-      auth: true
-      base-path: /owner
-      endpoints:
-        add:
-          display-name: Add an owner
-          docs: Add a new owner as a customer of the store.
-          path: /
-          method: POST
-          request:
-            name: AddOwnerRequest
-            body:
-              properties:
-                name: string
-                age: OwnerAge
-                plants: list<plant.Plant>
-          response: PlantOwner
-          errors:
-            - OwnerNotFoundError
-          examples:
-            - request:
-                name: Danny
-                age: adult
-                plants:
-                  - id: 309e5e64-7c5b-4433-a645-effa0683228e
-                    category:
-                      id: 2c1e5e33-6633-400f-8d87-bf4e81506dff
-                      name: Fiddle Leaf Fig
-                    name: Quadi
-                    photoUrls:
-                      growing: https://i.ibb.co/vk5N4C4/EDAA47-FF-6921-41-EE-ABA1-13-DE3-FCDB4-C0-1-105-c.jpg
-                    status: available
-              response:
-                error: OwnerNotFoundError
+service:
+  auth: true
+  base-path: /owner
+  endpoints:
+    add:
+      display-name: Add an owner
+      docs: Add a new owner as a customer of the store.
+      path: /
+      method: POST
+      request:
+        name: AddOwnerRequest
+        body:
+          properties:
+            name: string
+            age: OwnerAge
+            plants: list<plant.Plant>
+      response: PlantOwner
+      errors:
+        - OwnerNotFoundError
+      examples:
+        - request:
+            name: Danny
+            age: adult
+            plants:
+              - id: 309e5e64-7c5b-4433-a645-effa0683228e
+                category:
+                  id: 2c1e5e33-6633-400f-8d87-bf4e81506dff
+                  name: Fiddle Leaf Fig
+                name: Quadi
+                photoUrls:
+                  growing: https://i.ibb.co/vk5N4C4/EDAA47-FF-6921-41-EE-ABA1-13-DE3-FCDB4-C0-1-105-c.jpg
+                status: available
+          response:
+            error: OwnerNotFoundError
 
-        delete:
-          display-name: Delete an owner
-          method: DELETE
-          path: /{ownerId}
-          path-parameters:
-            ownerId: OwnerId
+    delete:
+      display-name: Delete an owner
+      method: DELETE
+      path: /{ownerId}
+      path-parameters:
+        ownerId: OwnerId
 
 types:
   OwnerId: uuid
