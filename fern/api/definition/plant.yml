@@ -28,7 +28,7 @@ service:
               name: Fiddle Leaf Fig
             name: Quadi
             photoUrls:
-              growing: https://i.ibb.co/vk5N4C4/EDAA47-FF-6921-41-EE-ABA1-13-DE3-FCDB4-C0-1-105-c.jpg
+              growing: https://fern-image-hosting.s3.amazonaws.com/three-plants.jpeg
             status: available
           response:
             error: InvalidResponseError
