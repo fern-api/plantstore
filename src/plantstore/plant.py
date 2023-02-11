@@ -2,8 +2,10 @@ import uuid
 
 from plantstore.generated.server import AddPlantRequest
 from plantstore.generated.server import ApiAuth
-from plantstore.generated.server import Plant
-from plantstore.generated.server.resources.plant import AbstractPlantService
+from plantstore.generated.server.resources.plant.service.service import (
+    AbstractPlantService,
+)
+from plantstore.generated.server.resources.plant.types.plant import Plant
 
 
 # Here's how you implement your endpoints. Notice there's no networking logic!

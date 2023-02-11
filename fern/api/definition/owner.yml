@@ -10,7 +10,7 @@ service:
     add:
       display-name: Add an owner
       docs: Add a new owner as a customer of the store.
-      path: /
+      path: ""
       method: POST
       request:
         name: AddOwnerRequest

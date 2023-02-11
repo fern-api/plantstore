@@ -7,15 +7,16 @@ import pydantic
 import typing_extensions
 
 from ....core.datetime_utils import serialize_datetime
-from .employee_id import EmployeeId
-from .store_customer import StoreCustomer
+from .plant_id import PlantId
 
 
-class StoreEmployee(StoreCustomer):
-    employee_id: EmployeeId = pydantic.Field(alias="employeeId")
+class InvalidId(pydantic.BaseModel):
+    id: PlantId
+    message: str
 
-    class Partial(StoreCustomer.Partial):
-        employee_id: typing_extensions.NotRequired[EmployeeId]
+    class Partial(typing_extensions.TypedDict):
+        id: typing_extensions.NotRequired[PlantId]
+        message: typing_extensions.NotRequired[str]
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
@@ -27,6 +28,5 @@ class StoreEmployee(StoreCustomer):
 
     class Config:
         frozen = True
-        allow_population_by_field_name = True
         extra = pydantic.Extra.forbid
         json_encoders = {dt.datetime: serialize_datetime}

@@ -1,41 +1,22 @@
 name: ci
 
-on: [push]
+on:
+  pull_request:
+  push:
+    branches: [main]
 
 jobs:
-  fern-check:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v3
-
-      - name: Install Fern
-        run:  npm install -g fern-api
-
-      - name: Check Fern API is valid
-        run: fern check
-
-  fern-release: 
-    needs: fern-check
-    if: github.event_name == 'push' && contains(github.ref, 'refs/tags/')
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repo
-        uses: actions/checkout@v3
-
-      - name: Setup node
-        uses: actions/setup-node@v3
-      
-      - name: Download Fern
-        run: npm install -g fern-api
-
-      - name: Release SDK, Postman, and OpenAPI
-        env:
-          FERN_TOKEN: ${{ secrets.FERN_TOKEN }}
-          FERN_NPM_TOKEN: ${{ secrets.FERN_NPM_TOKEN }}
-          FERN_MAVEN_USERNAME: ${{ secrets.FERN_MAVEN_USERNAME }}
-          FERN_MAVEN_PASSWORD: ${{ secrets.FERN_MAVEN_PASSWORD }}
-          FERN_POSTMAN_API_KEY: ${{ secrets.FERN_POSTMAN_API_KEY }}
-          FERN_POSTMAN_WORKSPACE_ID: ${{ secrets.FERN_POSTMAN_WORKSPACE_ID }}
-        run: fern generate --group external --version ${{ github.ref_name }} --log-level debug
-        
+      - name: Checkout
+        uses: actions/checkout@v2
+      - uses: actions/setup-python@v3
+      - name: Install Poetry
+        uses: snok/install-poetry@v1
+      - name: Install dependencies
+        run: poetry install
+      - name: mypy
+        run: poetry run mypy
+      - name: pre-commit
+        run: poetry run pre-commit run --all-files
