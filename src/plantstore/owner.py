@@ -3,7 +3,9 @@ import uuid
 from plantstore.generated.server import AddOwnerRequest
 from plantstore.generated.server import ApiAuth
 from plantstore.generated.server import PlantOwner
-from plantstore.generated.server.resources.owner.service.service import AbstractOwnerService
+from plantstore.generated.server.resources.owner.service.service import (
+    AbstractOwnerService,
+)
 
 
 # Here's how you implement your endpoints. Notice there's no networking logic!

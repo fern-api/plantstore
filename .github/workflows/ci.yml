@@ -18,4 +18,5 @@ jobs:
         run: poetry install
       - name: mypy
         run: poetry run mypy
-        
+      - name: pre-commit
+        run: poetry run pre-commit run --all-files
