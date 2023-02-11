@@ -2,11 +2,13 @@
 
 from __future__ import annotations
 
+import datetime as dt
 import typing
 
 import pydantic
 import typing_extensions
 
+from ....core.datetime_utils import serialize_datetime
 from .store_customer import StoreCustomer
 from .store_employee import StoreEmployee
 
@@ -50,6 +52,7 @@ class PlantOwner(pydantic.BaseModel):
     class Config:
         frozen = True
         extra = pydantic.Extra.forbid
+        json_encoders = {dt.datetime: serialize_datetime}
 
 
 class _PlantOwner:

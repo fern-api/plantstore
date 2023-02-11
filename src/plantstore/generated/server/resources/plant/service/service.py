@@ -23,8 +23,7 @@ from .add_plant_request import AddPlantRequest
 
 class AbstractPlantService(AbstractFernService):
     """
-    AbstractPlantService is an abstract class containing the methods that your
-    PlantService implementation should implement.
+    AbstractPlantService is an abstract class containing the methods that you should implement.
 
     Each method is associated with an API route, which will be registered
     with FastAPI when you register your implementation using Fern's register()
@@ -93,7 +92,7 @@ class AbstractPlantService(AbstractFernService):
         router.post(
             path="/plant",
             status_code=starlette.status.HTTP_204_NO_CONTENT,
-            description=cls.add.__doc__,
+            description=AbstractPlantService.add.__doc__,
             **get_route_args(cls.add, default_tag="plant"),
         )(wrapper)
 
@@ -133,7 +132,7 @@ class AbstractPlantService(AbstractFernService):
         router.get(
             path="/plant/{plant_id}",
             response_model=Plant,
-            description=cls.find.__doc__,
+            description=AbstractPlantService.find.__doc__,
             **get_route_args(cls.find, default_tag="plant"),
         )(wrapper)
 
@@ -173,6 +172,6 @@ class AbstractPlantService(AbstractFernService):
         router.delete(
             path="/plant/{plant_id}",
             status_code=starlette.status.HTTP_204_NO_CONTENT,
-            description=cls.delete.__doc__,
+            description=AbstractPlantService.delete.__doc__,
             **get_route_args(cls.delete, default_tag="plant"),
         )(wrapper)

@@ -2,10 +2,13 @@
 
 from __future__ import annotations
 
+import datetime as dt
 import typing
 import uuid
 
 import pydantic
+
+from ....core.datetime_utils import serialize_datetime
 
 
 class CategoryId(pydantic.BaseModel):
@@ -29,3 +32,4 @@ class CategoryId(pydantic.BaseModel):
     class Config:
         frozen = True
         extra = pydantic.Extra.forbid
+        json_encoders = {dt.datetime: serialize_datetime}

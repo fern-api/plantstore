@@ -21,8 +21,7 @@ from .add_owner_request import AddOwnerRequest
 
 class AbstractOwnerService(AbstractFernService):
     """
-    AbstractOwnerService is an abstract class containing the methods that your
-    OwnerService implementation should implement.
+    AbstractOwnerService is an abstract class containing the methods that you should implement.
 
     Each method is associated with an API route, which will be registered
     with FastAPI when you register your implementation using Fern's register()
@@ -86,7 +85,7 @@ class AbstractOwnerService(AbstractFernService):
         router.post(
             path="/owner",
             response_model=PlantOwner,
-            description=cls.add.__doc__,
+            description=AbstractOwnerService.add.__doc__,
             **get_route_args(cls.add, default_tag="owner"),
         )(wrapper)
 
@@ -124,6 +123,6 @@ class AbstractOwnerService(AbstractFernService):
         router.delete(
             path="/owner/{owner_id}",
             status_code=starlette.status.HTTP_204_NO_CONTENT,
-            description=cls.delete.__doc__,
+            description=AbstractOwnerService.delete.__doc__,
             **get_route_args(cls.delete, default_tag="owner"),
         )(wrapper)

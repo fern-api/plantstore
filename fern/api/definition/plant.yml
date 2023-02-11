@@ -7,7 +7,7 @@ service:
     add:
       display-name: Add a plant
       docs: Add a new plant to the store.
-      path: /
+      path: ""
       method: POST
       request:
         name: AddPlantRequest
